@@ -16,8 +16,8 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-/tpass 0 def
-/tfail 0 def
+/testsPassed 0 def
+/testsFailed 0 def
 
 /shouldBe {     % <msg> <this> <that> shouldBe -
     3 dict begin
@@ -32,10 +32,10 @@
         eq
         {
             (Pass: )
-            tpass 1 add /tpass exch store
+            testsPassed 1 add /testsPassed exch store
         } {
             (Fail: )
-            tfail 1 add /tfail exch store
+            testsFailed 1 add /testsFailed exch store
         } ifelse print
 
         print
