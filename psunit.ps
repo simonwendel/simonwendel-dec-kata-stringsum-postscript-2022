@@ -16,12 +16,10 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(convert.ps) run
+
 /testsPassed 0 def
 /testsFailed 0 def
-
-/str {              % <any> str <string>
-    20 string cvs
-} bind def
 
 /shouldBe {         % <msg:string> <this:any> <that:any> shouldBe -
     str /that exch def
@@ -37,8 +35,7 @@
     } ifelse print
 
     print % <msg>
-    [ ( <) this (>=<) that (>) ] { print } forall
-    (\n) print
+    [ ( <) this (>=<) that (>) (\n) ] { print } forall
 } bind def
 
 /runTests {
