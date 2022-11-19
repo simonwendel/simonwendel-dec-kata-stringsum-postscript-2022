@@ -19,27 +19,26 @@
 /testsPassed 0 def
 /testsFailed 0 def
 
-/shouldBe {     % <msg> <this> <that> shouldBe -
+/shouldBe {         % <msg> <this> <that> shouldBe -
     3 dict begin
-        /str {
+        /str {      % <any> str <string>
             20 string cvs
         } bind def
 
-        1 index 1 index
         str /that exch def
         str /this exch def
 
-        eq
+        this that eq
         {
-            (Pass: )
             testsPassed 1 add /testsPassed exch store
+            (Pass: )
         } {
-            (Fail: )
             testsFailed 1 add /testsFailed exch store
+            (Fail: )
         } ifelse print
 
-        print
-        [ ( [) this ( ) that (]) ] { print } forall
+        print % <msg>
+        [ ( <) this (> <) that (>) ] { print } forall
         (\n) print
     end
 } bind def
