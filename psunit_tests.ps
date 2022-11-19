@@ -16,15 +16,14 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(./psunit.ps) run
+(psunit.ps) run
 
-(\n============= FRAMEWORK TEST CASES ==============\n) print
-(this should pass) 1 1 shouldBe             % PASS
-(this should fail) (1) (2) shouldBe         % FAIL
-(this should pass) (abc) (abc) shouldBe     % PASS
-
-(\n=================== RESULTS =====================\n) print
-(number of passes should be correct) testsPassed 2 shouldBe
-(number of fails should be correct) testsFailed 1 shouldBe
+[
+    { (this should pass.) 1 1 shouldBe }             % PASS
+    { (this should fail.) (1) (2) shouldBe }         % FAIL
+    { (this should pass.) (abc) (abc) shouldBe }     % PASS
+    { (number of passes should be expected.) testsPassed 2 shouldBe }
+    { (number of fails should be expected.) testsFailed 1 shouldBe }
+] runTests
 
 quit
