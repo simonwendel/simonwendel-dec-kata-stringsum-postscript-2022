@@ -16,7 +16,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(convert.ps) run
+(text.ps) run
 
 /testsPassed 0 def
 /testsFailed 0 def
@@ -35,7 +35,7 @@
     } ifelse print
 
     print % <msg>
-    [ ( <) this (>=<) that (>) (\n) ] { print } forall
+    [ ( <) this (>=<) that (>) (\n) ] printarr
 } bind def
 
 /runTests {
@@ -47,10 +47,10 @@
 
     (\n========== RESULTS =========\n) print
     [ (Successful tests:    ) testsPassed str (/) totalCases (\n) ]
-    { print } forall
+    printarr
 
     [ (Failed tests:        )  testsFailed str (/) totalCases (\n) ]
-    { print } forall
+    printarr
 
     (\n) print
 } bind def
