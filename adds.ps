@@ -16,18 +16,38 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+/delimiters [
+    (;)
+    ( )
+    () % stop searching
+] def
+
 /adds {             % <string> adds <integer>
-    2 dict begin
+    4 dict begin
     /sum 0 def
     /val exch def
 
-    /addToSum {
+    /findDelim {    % <string> findDelim <string>
+        delimiters {
+            search {
+                3 -1 roll pop pop % clean out search left-overs
+                exit
+            } if
+        } forall % first match on stack
+
+        dup () eq {
+            pop (,) % default delim
+        } if
+    } bind def
+
+    /addToSum {     % <string> addToSum -
         cvi
         sum add /sum exch def
     } bind def
 
     val length 0 gt {
-        val (,) {
+        val findDelim
+        val exch {
             search exch addToSum
             not {
                 exit
