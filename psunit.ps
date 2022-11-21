@@ -40,7 +40,7 @@
 
 /runTests {         % [<proc>...<proc>] runTests -
     /testCases exch def
-    /totalCases testCases length str  def
+    /totalCases testCases length str def
 
     (\n======== TEST CASES ========\n) print
     testCases { exec printarr } forall
