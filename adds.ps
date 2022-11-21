@@ -27,14 +27,11 @@
     } bind def
 
     val length 0 gt {
-        val (,)
-        {
-            search {
-                addToSum
-            } {
-                addToSum
+        val (,) {
+            search exch addToSum
+            not {
                 exit
-            } ifelse
+            } if
         } loop
     } if
 
