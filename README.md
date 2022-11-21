@@ -1,4 +1,4 @@
-# PSStringThing - An add function over strings of numbers in PostScript
+# PSStringThing
 
 PostScript implementation of a function that adds numbers listed in a string and returns the sum. Lack of unit testing frameworks resulted in me having to implement a tiny one myself, otherwise I couldn't develop the code using a test-first approach.
 
