@@ -21,21 +21,21 @@
 /testsPassed 0 def
 /testsFailed 0 def
 
-/shouldBe {         % <msg:string> <this:any> <that:any> shouldBe -
+/shouldBe {         % <msg:string> <this:any> <that:any> shouldBe [<str>...<str>]
     str /that exch def
     str /this exch def
+    /msg exch def
 
-    this that eq
-    {
-        testsPassed 1 add /testsPassed exch store
-        (Pass: )
-    } {
-        testsFailed 1 add /testsFailed exch store
-        (Fail: )
-    } ifelse print
+    [ this that eq {
+            testsPassed 1 add /testsPassed exch store
+            (Pass: )
+        } {
+            testsFailed 1 add /testsFailed exch store
+            (Fail: )
+        } ifelse
 
-    print % <msg>
-    [ ( <) this (>=<) that (>) (\n) ] printarr
+        msg ( <) this (>=<) that (>) (\n) 
+    ]
 } bind def
 
 /runTests {         % [<proc>...<proc>] runTests -
@@ -43,7 +43,7 @@
     /totalCases testCases length str  def
 
     (\n======== TEST CASES ========\n) print
-    testCases { exec } forall
+    testCases { exec printarr } forall
 
     (\n========== RESULTS =========\n) print
     [ (Successful tests:    ) testsPassed str (/) totalCases (\n) ]
